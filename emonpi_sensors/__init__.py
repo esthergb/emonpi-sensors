@@ -96,7 +96,7 @@ class EmonPiSensors(object):
         while not self._reader.at_eof():
             line = yield from self._reader.readline()
             line = line.strip().decode().split()
-            if line[0] != 'OK':
+            if not line or line[0] != 'OK':
                 continue
             line = line[2:]
 
